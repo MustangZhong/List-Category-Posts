@@ -411,10 +411,7 @@ class CatListDisplayer {
     $lcp_post_title = apply_filters('the_title', $single->post_title, $single->ID);
 
     if ( !empty($this->params['title_limit']) && $this->params['title_limit'] != "0" ):
-      $lcp_post_title = substr($lcp_post_title, 0, intval($this->params['title_limit']));
-      if( strlen($lcp_post_title) >= intval($this->params['title_limit']) ):
-        $lcp_post_title .= "&hellip;";
-      endif;
+        $lcp_post_title = wp_trim_words($lcp_post_title, intval($this->params['title_limit']));
     endif;
 
     $info.=  '" title="' . wptexturize($single->post_title) . '"';
